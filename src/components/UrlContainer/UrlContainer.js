@@ -1,7 +1,7 @@
 import React from 'react';
 import './UrlContainer.css';
 
-function UrlContainer({ urls }) {
+const UrlContainer = ({ urls }) => {
 
     const urlEls = urls.map(url => {
       return (

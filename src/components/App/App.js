@@ -6,11 +6,13 @@ import UrlForm from '../UrlForm/UrlForm';
 
 function App () {
   const [urls, setUrls] = useState([]);
+  const [error, setError] = useState('');
 
   useEffect(() => {
+    setError('');
     getUrls()
       .then(data => setUrls([...data.urls]))
-      .catch(err => console.log(err))
+      .catch(err => setError(err.message))
 
   }, [])
 
@@ -22,10 +24,10 @@ function App () {
     <main className="App">
       <header>
         <h1>URL Shortener</h1>
-        <UrlForm addUrl={addUrl}/>
+        <UrlForm addUrl={addUrl} />
       </header>
-
-      { urls.length ? <UrlContainer urls={urls}/> : <p>No urls yet! Find some to shorten!</p> }
+      { error && <h2>{error}</h2>}
+      { urls.length && !error ? <UrlContainer urls={urls}/> : <p>No urls yet! Find some to shorten!</p> }
     </main>
   );
 }
