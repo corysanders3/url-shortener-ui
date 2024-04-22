@@ -3,9 +3,9 @@ import './UrlContainer.css';
 
 function UrlContainer({ urls }) {
 
-    const urlEls = urls.urls.map(url => {
+    const urlEls = urls.map(url => {
       return (
-        <div className="url">
+        <div className="url" key={url.id}>
           <h3>{url.title}</h3>
           <a href={url.short_url} target="blank">{url.short_url}</a>
           <p>{url.long_url}</p>

@@ -5,23 +5,27 @@ import UrlContainer from '../UrlContainer/UrlContainer';
 import UrlForm from '../UrlForm/UrlForm';
 
 function App () {
-  const [urls, setUrls] = useState();
+  const [urls, setUrls] = useState([]);
 
   useEffect(() => {
     getUrls()
-      .then(data => setUrls(data))
+      .then(data => setUrls([...data.urls]))
       .catch(err => console.log(err))
 
   }, [])
+
+  const addUrl = (newUrl) => {
+    setUrls([...urls, newUrl])
+  }
 
   return (
     <main className="App">
       <header>
         <h1>URL Shortener</h1>
-        <UrlForm />
+        <UrlForm addUrl={addUrl}/>
       </header>
 
-      { urls ? <UrlContainer urls={urls}/> : <p>No urls yet! Find some to shorten!</p> }
+      { urls.length ? <UrlContainer urls={urls}/> : <p>No urls yet! Find some to shorten!</p> }
     </main>
   );
 }
