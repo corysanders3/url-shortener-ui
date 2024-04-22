@@ -5,3 +5,10 @@
   padding: 5px;
   background-color: #FFF;
 }
+
+.all-urls {
+  display: grid;
+  grid-template-columns: repeat(2, 50%);
+  margin: 20px;
+  grid-gap: 10px;
+}

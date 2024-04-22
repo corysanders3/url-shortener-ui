@@ -5,11 +5,14 @@ import UrlContainer from '../UrlContainer/UrlContainer';
 import UrlForm from '../UrlForm/UrlForm';
 
 function App () {
-  const [urls, setUrls] = useState([]);
+  const [urls, setUrls] = useState();
 
   useEffect(() => {
+    getUrls()
+      .then(data => setUrls(data))
+      .catch(err => console.log(err))
 
-  })
+  }, [])
 
   return (
     <main className="App">
@@ -18,7 +21,7 @@ function App () {
         <UrlForm />
       </header>
 
-      <UrlContainer urls={"<<<Urls should go here>>>"}/>
+      { urls ? <UrlContainer urls={urls}/> : <p>No urls yet! Find some to shorten!</p> }
     </main>
   );
 }
